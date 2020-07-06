@@ -1,0 +1,31 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="exampleToast">
+        <item name="colorBackground">#ff304f</item>
+        <item name="textColor">#FFFFFF</item>
+        <item name="strokeColor">#002651</item>
+        <item name="iconLeft">@drawable/delete_sign_filled_26px</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="length">SHORT</item>
+        <item name="textSize">15sp</item>
+        <item name="cornerRadius">15dp</item>
+    </style>
+    <style name="SuccessToast">
+        <item name="colorBackground">#0b8457</item>
+        <item name="textColor">#f5f5f5</item>
+        <item name="strokeColor">#002651</item>
+        <item name="iconLeft">@drawable/checkmark_26px</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="length">SHORT</item>
+        <item name="textSize">15sp</item>
+        <item name="cornerRadius">15dp</item>
+    </style>
+
+</resources>

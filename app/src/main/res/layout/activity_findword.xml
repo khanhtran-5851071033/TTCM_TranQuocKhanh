@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical"
+    tools:context=".findword">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="90dp"
+        >
+
+        <AutoCompleteTextView
+            android:id="@+id/txt_find"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/custom_btn_flash"
+            android:drawableLeft="@drawable/search_filled_26px"
+            android:ems="10"
+            android:textStyle="bold"
+            android:hint="Search words"
+            android:inputType="textPersonName"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_light_background"
+            android:textColorHint="@color/cardview_light_background"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/img_voice"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            app:srcCompat="@drawable/microphone_50p" />
+
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/lv_words"
+        style="@android:style/Widget.DeviceDefault.ExpandableListView"
+        android:layout_width="match_parent"
+        android:layout_height="658dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/background_light">
+
+    </ListView>
+
+</LinearLayout>
