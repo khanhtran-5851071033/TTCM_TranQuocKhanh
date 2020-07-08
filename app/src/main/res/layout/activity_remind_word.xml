@@ -4,33 +4,141 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context=".RemindWord">
 
-    <EditText
-        android:id="@+id/txt_text"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/bg"
+        android:gravity="center">
+
+        <AutoCompleteTextView
+            android:id="@+id/txt_find"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/custom_btn_flash"
+            android:drawableLeft="@drawable/search_filled_26px"
+            android:ems="10"
+            android:hint="Search words"
+            android:inputType="textPersonName"
+            android:textAlignment="center"
+            android:textColor="@color/cardview_light_background"
+            android:textColorHint="@color/cardview_light_background"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/img_voice"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            app:srcCompat="@drawable/microphone_50p" />
+
+    </LinearLayout>
+
+
+    <RadioGroup
+        android:id="@+id/g2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:gravity="center"
+        android:orientation="horizontal">
 
-    <TimePicker
-        android:id="@+id/dateTimePic"
+        <RadioButton
+            android:id="@+id/rdio_allWord"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Tất cả"
+            android:textColor="@color/text"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/rdio_favourite"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:text="Yêu thích"
+            android:textColor="@color/text"
+            android:textSize="16sp" />
+    </RadioGroup>
+
+    <ListView
+        android:id="@+id/lv_words"
+        style="@android:style/Widget.DeviceDefault.ExpandableListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="455dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/background_light"></ListView>
 
-    </TimePicker>
-
-    <Button
-        android:id="@+id/btn_set"
+    <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SET" />
+        app:srcCompat="@drawable/line" />
 
-    <Button
-        android:id="@+id/btn_canle"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/btn_setTime"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:srcCompat="@drawable/time" />
+
+        <TextView
+            android:id="@+id/txt_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:text="00:00"
+            android:textColor="@color/Red"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/cancel_48px" />
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/g1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CANLCE" />
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rdio_onlyDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:layout_marginRight="20dp"
+            android:text="Chỉ hôm nay"
+            android:textColor="@color/text"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/rdio_everyDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Mỗi ngày"
+            android:textColor="@color/text"
+            android:textSize="16sp" />
+
+    </RadioGroup>
+
 </LinearLayout>

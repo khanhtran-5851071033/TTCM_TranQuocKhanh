@@ -17,6 +17,16 @@ public class words {
 
 
     private  byte [] image;
+
+    public words() {
+    }
+
+    public words(int ID, String name, String spell, String mean){
+        this.ID = ID;
+        this.name = name;
+        this.wordType = wordType;
+        this.spell = spell;
+    }
     public words(int ID, String name, String wordType, String spell, String mean, String example, String synonym,int favourite) {
         this.ID = ID;
         this.name = name;

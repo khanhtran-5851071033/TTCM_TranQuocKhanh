@@ -56,7 +56,7 @@ public class findword extends AppCompatActivity {
         setContentView(R.layout.activity_findword);
         getSupportActionBar().hide();
         addView();
-       // PrepareDB();
+        PrepareDB();
         normal_or_favourite();
         viewWord();
         addEvent();
@@ -71,17 +71,24 @@ public class findword extends AppCompatActivity {
         });
         txt_find.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                if(favourite==1)
+                {
+                    GetData("SELECT * FROM Wordss WHERE WordName LIKE '%"+txt_find.getText().toString()+"%' AND favourite=1 ORDER BY WordName ASC");
+                    //afterTextChanged();
+                }
+                else {GetData("SELECT * FROM Wordss WHERE WordName LIKE '%"+txt_find.getText().toString()+"%' ORDER BY WordName ASC");}
+            }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) { }
             @Override
             public void afterTextChanged(Editable s) {
                 if(favourite==1)
                 {
-                    GetData("SELECT * FROM Wordss WHERE WordName LIKE '%"+txt_find.getText().toString()+"%' AND favourite=1");
+                    GetData("SELECT * FROM Wordss WHERE WordName LIKE '%"+txt_find.getText().toString()+"%' AND favourite=1 ORDER BY WordName ASC");
                     //afterTextChanged();
                 }
-                else {GetData("SELECT * FROM Wordss WHERE WordName LIKE '%"+txt_find.getText().toString()+"%'");}
+                else {GetData("SELECT * FROM Wordss WHERE WordName LIKE '%"+txt_find.getText().toString()+"%' ORDER BY WordName ASC");}
             }
         });
     }
@@ -197,7 +204,7 @@ public class findword extends AppCompatActivity {
 
     //tạo databasse
     private void PrepareDB() {
-        database.QueryData("DELETE FROM Wordss");
+       // database.QueryData("DELETE FROM Wordss");
         database.QueryData("CREATE TABLE IF NOT EXISTS Wordss(ID Integer PRIMARY KEY AUTOINCREMENT, WordName VARCHAR(50),WordSpell VARCHAR(50)" +
                 ",WordType VARCHAR(50),WordMean VARCHAR(100),WordSynonym VARCHAR(100),WordExample VARCHAR(200),favourite INT)");
         database.QueryData("INSERT INTO Wordss VALUES(null,'Hello','[helou]','Động từ','Xin chào','Hi','Hello Khánh',0)");

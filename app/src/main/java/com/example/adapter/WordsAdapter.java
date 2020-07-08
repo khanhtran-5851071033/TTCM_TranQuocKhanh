@@ -11,15 +11,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dictionaryapp.R;
+import com.example.dictionaryapp.RemindWord;
 import com.example.dictionaryapp.findword;
 import com.example.model.words;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class WordsAdapter extends BaseAdapter {
 //    private Activity mainActivity;
     private findword mainActivity;
+    private RemindWord remindWord;
     private int layout;
     private List<words> wordsList;
     private TextToSpeech mTTS;
@@ -29,6 +32,8 @@ public class WordsAdapter extends BaseAdapter {
         this.layout=layout;
         this.wordsList=wordsLists;
     }
+
+
     @Override
     public int getCount() {
         return wordsList.size();

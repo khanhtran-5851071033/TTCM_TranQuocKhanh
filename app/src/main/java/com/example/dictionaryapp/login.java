@@ -38,7 +38,6 @@ public class login extends AppCompatActivity {
         line_animation= AnimationUtils.loadAnimation(this,R.anim.line_animation);
         addView();
         addAnimation();
-        //database.GetData("DELETE FROM Accounts");
         addEvent();
 
     }
