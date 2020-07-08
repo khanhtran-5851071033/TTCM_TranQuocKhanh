@@ -187,8 +187,7 @@ public class RemindWord extends AppCompatActivity implements TimePickerDialog.On
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
         Set<String>ds = preferences.getStringSet("set",null);
         ArrayList<String> danhsach = new ArrayList<>();
-        for (String i :
-                ds) {
+        for (String i : ds) {
             int ma = Integer.parseInt(i);
             com.example.model.words w = getRemind(ma);
             String a = ma+"-"+w.getName()+"-"+w.getSpell()+"-"+w.getMean();
@@ -218,7 +217,7 @@ public class RemindWord extends AppCompatActivity implements TimePickerDialog.On
         }
         return w;
     }
-    
+
     private void cancelAlarm() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
