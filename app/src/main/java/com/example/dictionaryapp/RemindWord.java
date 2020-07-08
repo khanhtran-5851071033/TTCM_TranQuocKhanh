@@ -191,7 +191,7 @@ public class RemindWord extends AppCompatActivity implements TimePickerDialog.On
                 ds) {
             int ma = Integer.parseInt(i);
             com.example.model.words w = getRemind(ma);
-            String a = ma+"/"+w.getName()+"/"+w.getSpell()+"/"+w.getMean();
+            String a = ma+"-"+w.getName()+"-"+w.getSpell()+"-"+w.getMean();
             danhsach.add(a);
 
         }

@@ -40,7 +40,7 @@ public class AlertReceiver extends BroadcastReceiver {
 //       ArrayList<words>ds = intent.getParcelableExtra("ds");
 //       Log.e("ID",ds.get(0).getName() );
        ArrayList<String>danhsach = intent.getStringArrayListExtra("ds");
-       Log.e("aa :",danhsach.get(0) );
+       Log.e("aa :",danhsach.get(0));
 
 
 
@@ -55,7 +55,7 @@ public class AlertReceiver extends BroadcastReceiver {
 
              for(int i=0;i<danhsach.size();i++)
       {
-          String [] arr = danhsach.get(i).split("/");
+          String [] arr = danhsach.get(i).split("-");
            NotificationCompat.Builder nb = new NotificationCompat.Builder(context, CHANNEL_1_ID)
                    .setSmallIcon(R.drawable.next)
                    .setContentTitle(arr[1])
