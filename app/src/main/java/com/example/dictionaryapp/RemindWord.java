@@ -193,12 +193,9 @@ public class RemindWord extends AppCompatActivity implements TimePickerDialog.On
             com.example.model.words w = getRemind(ma);
             String a = ma+"-"+w.getName()+"-"+w.getSpell()+"-"+w.getMean();
             danhsach.add(a);
-
         }
         intent.putExtra("ds",danhsach);
         Toast.makeText(this, danhsach.get(0), Toast.LENGTH_SHORT).show();
-        //Toast.makeText(this, words.get(0).getName(), Toast.LENGTH_SHORT).show();
-        //Toast.makeText(this, builder.toString(), Toast.LENGTH_SHORT).show();
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
         if (c.before(Calendar.getInstance())) {
             c.add(Calendar.DATE, 1);
@@ -209,8 +206,6 @@ public class RemindWord extends AppCompatActivity implements TimePickerDialog.On
     {
         Cursor c= database.GetData("SELECT * FROM Wordss where ID="+ma);
         words w = new words();
-        //words.clear();
-        //txt_find.setText(c.getString(1));
         while (c.moveToNext()) {
             int ID = c.getInt(0);
             String WordName = c.getString(1);
@@ -223,27 +218,7 @@ public class RemindWord extends AppCompatActivity implements TimePickerDialog.On
         }
         return w;
     }
-    public void remind(int id,String name,String spell,String mean){
-        try {
-            database.QueryData("INSERT INTO Remind VALUES("+id+",'"+name+"','"+spell+"','"+mean+"')");
-            StyleableToast.makeText(RemindWord.this,"Đã thêm lời nhắc !",R.style.SuccessToast).show();
-            //getRemind();
-
-        }
-        catch (Exception e){}
-
-       // getRemind();
-    }
-    public void unremind(int id){
-        try {
-            database.QueryData("DELETE FROM Remind WHERE ID="+id+"");
-            StyleableToast.makeText(RemindWord.this,"Đã bỏ lời nhắc !",R.style.SuccessToast).show();
-           // getRemind();
-
-        }
-        catch (Exception e){}
-       // getRemind();
-    }
+    
     private void cancelAlarm() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);

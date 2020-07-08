@@ -86,7 +86,6 @@ public class RemindAdapter extends BaseAdapter {
                         editor.putStringSet("set",ds_set);
                         editor.apply();
 
-//                            remindWord.remind(w.getID(),w.getName(),w.getSpell(),w.getMean());
                     }
                     else {
                         SharedPreferences sharedPreferences = remindWord.getPreferences(Context.MODE_PRIVATE);

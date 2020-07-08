@@ -34,16 +34,8 @@ public class AlertReceiver extends BroadcastReceiver {
    public void onReceive(Context context, Intent intent) {
        NotificationHelper notificationHelper = new NotificationHelper(context);
 
-
-//       String a =  intent.getStringExtra("a");
-//       String b =  intent.getStringExtra("b");
-//       ArrayList<words>ds = intent.getParcelableExtra("ds");
-//       Log.e("ID",ds.get(0).getName() );
        ArrayList<String>danhsach = intent.getStringArrayListExtra("ds");
        Log.e("aa :",danhsach.get(0));
-
-
-
 
            // or activity.getApplicationContext()
 //        PackageManager packageManager = context.getPackageManager();
