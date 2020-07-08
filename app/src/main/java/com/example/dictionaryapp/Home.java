@@ -73,4 +73,18 @@ public class Home extends AppCompatActivity {
         Home.this.startActivity(intent);
         CustomIntent.customType(this,"up-to-bottom");
     }
+    public void history(View view) {
+        Intent intent=new Intent(Home.this, findword.class);
+        Bundle bundle =new Bundle();
+        bundle.putInt("history",1);
+        intent.putExtra("my",bundle);
+        Home.this.startActivity(intent);
+        CustomIntent.customType(this,"up-to-bottom");
+    }
+
+    public void toSetting(View view) {
+        Intent intent=new Intent(Home.this, Setting.class);
+        Home.this.startActivity(intent);
+        CustomIntent.customType(this,"Right-to-left");
+    }
 }

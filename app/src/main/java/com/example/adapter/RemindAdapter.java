@@ -15,6 +15,7 @@ import com.example.dictionaryapp.R;
 import com.example.dictionaryapp.RemindWord;
 import com.example.dictionaryapp.findword;
 import com.example.dictionaryapp.login;
+import com.example.dictionaryapp.viewWord;
 import com.example.model.words;
 import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
@@ -85,7 +86,7 @@ public class RemindAdapter extends BaseAdapter {
                         ds_set.add(w.getID()+"");
                         editor.putStringSet("set",ds_set);
                         editor.apply();
-
+                        remindWord.Toast_remind();
                     }
                     else {
                         SharedPreferences sharedPreferences = remindWord.getPreferences(Context.MODE_PRIVATE);
@@ -95,6 +96,7 @@ public class RemindAdapter extends BaseAdapter {
                         ds_set.remove(w.getID()+"");
                         editor.putStringSet("set",ds_set);
                         editor.apply();
+                        remindWord.Toast_unremind();
                     }
             }
         });

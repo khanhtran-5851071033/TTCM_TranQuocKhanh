@@ -89,6 +89,7 @@
             android:layout_marginLeft="20dp"
             android:background="@drawable/custom_card"
             android:gravity="center"
+            android:onClick="history"
             android:orientation="vertical">
 
             <ImageView
@@ -260,6 +261,7 @@
             android:layout_marginLeft="20dp"
             android:background="@drawable/custom_card"
             android:gravity="center"
+            android:onClick="toSetting"
             android:orientation="vertical">
 
             <ImageView

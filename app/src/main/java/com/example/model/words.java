@@ -14,20 +14,9 @@ public class words {
     private String example;
     private String synonym;
     private int favourite;
+    private int history;
 
-
-    private  byte [] image;
-
-    public words() {
-    }
-
-    public words(int ID, String name, String spell, String mean){
-        this.ID = ID;
-        this.name = name;
-        this.wordType = wordType;
-        this.spell = spell;
-    }
-    public words(int ID, String name, String wordType, String spell, String mean, String example, String synonym,int favourite) {
+    public words(int ID, String name, String wordType, String spell, String mean, String example, String synonym, int favourite, int history) {
         this.ID = ID;
         this.name = name;
         this.wordType = wordType;
@@ -35,8 +24,24 @@ public class words {
         this.mean = mean;
         this.example = example;
         this.synonym = synonym;
-        this.favourite=favourite;
+        this.favourite = favourite;
+        this.history = history;
     }
+
+    public int getHistory() {
+        return history;
+    }
+
+    public void setHistory(int history) {
+        this.history = history;
+    }
+
+    private  byte [] image;
+
+    public words() {
+    }
+
+
     public int getFavourite() {
         return favourite;
     }

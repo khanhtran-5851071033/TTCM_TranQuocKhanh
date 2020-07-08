@@ -44,14 +44,14 @@ public class AlertReceiver extends BroadcastReceiver {
 //        //contentView.setImageViewResource(R.id.imageView, R.drawable.c);
 ////        contentView.setTextViewText(R.id.textView2, "adsa");
 ////        contentView.setTextViewText(R.id.textView3, "adsdsa");
-
              for(int i=0;i<danhsach.size();i++)
       {
           String [] arr = danhsach.get(i).split("-");
            NotificationCompat.Builder nb = new NotificationCompat.Builder(context, CHANNEL_1_ID)
-                   .setSmallIcon(R.drawable.next)
+                   .setSmallIcon(R.drawable.dictionary_blue_100px)
                    .setContentTitle(arr[1])
-                   .setContentText(arr[2]+"\n"+arr[3])
+                   .setContentText(arr[2]+"\n  "+arr[3])
+
                    .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                    .setPriority(NotificationCompat.PRIORITY_HIGH)
                    .setColor(Color.GREEN)

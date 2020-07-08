@@ -160,8 +160,9 @@ public class RemindWord extends AppCompatActivity implements TimePickerDialog.On
             String WordSynonym=c.getString(5);
             String WordExample=c.getString(6);
             int WordFavourite=c.getInt(7);
+            int WordHistory=c.getInt(8);
             // byte[] WordImage=c.getBlob(7);
-            wordsArrayList.add(new words(ID,WordName,WordType,WordSpell, WordMean, WordExample,WordSynonym,WordFavourite));
+            wordsArrayList.add(new words(ID,WordName,WordType,WordSpell, WordMean, WordExample,WordSynonym,WordFavourite,WordHistory));
         }
         remindAdapter.notifyDataSetChanged();
     }
@@ -194,7 +195,6 @@ public class RemindWord extends AppCompatActivity implements TimePickerDialog.On
             danhsach.add(a);
         }
         intent.putExtra("ds",danhsach);
-        Toast.makeText(this, danhsach.get(0), Toast.LENGTH_SHORT).show();
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
         if (c.before(Calendar.getInstance())) {
             c.add(Calendar.DATE, 1);
@@ -209,7 +209,7 @@ public class RemindWord extends AppCompatActivity implements TimePickerDialog.On
             int ID = c.getInt(0);
             String WordName = c.getString(1);
             String WordSpell = c.getString(2);
-            String WordMean = c.getString(3);
+            String WordMean = c.getString(4);
             w.setID(ID);
             w.setName(WordName);
             w.setSpell(WordSpell);
@@ -217,6 +217,8 @@ public class RemindWord extends AppCompatActivity implements TimePickerDialog.On
         }
         return w;
     }
+    public void Toast_remind(){ StyleableToast.makeText(RemindWord.this,"Đã Thêm lời nhắc !",R.style.SuccessToast).show();}
+    public void Toast_unremind(){ StyleableToast.makeText(RemindWord.this,"Đã Bỏ lời nhắc !",R.style.SuccessToast).show();}
 
     private void cancelAlarm() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
