@@ -17,6 +17,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.UserDictionary;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
@@ -34,8 +35,11 @@ import android.widget.Toast;
 import com.example.adapter.WordsAdapter;
 import com.example.model.words;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -51,6 +55,8 @@ public class findword extends AppCompatActivity {
     ImageView img_void;
     private int favourite=0;
     private int history=0;
+    private TextToSpeech mTTS;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +64,7 @@ public class findword extends AppCompatActivity {
         setContentView(R.layout.activity_findword);
         getSupportActionBar().hide();
         addView();
-        //PrepareDB();
+       // PrepareDB();
         normal_or_favourite_or_history();
         viewWord();
         addEvent();
@@ -89,9 +95,29 @@ public class findword extends AppCompatActivity {
                 else {GetData("SELECT * FROM Wordss WHERE WordName LIKE '%"+txt_find.getText().toString()+"%' ORDER BY WordName ASC");}
             }
         });
+        mTTS = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    int result = mTTS.setLanguage(Locale.ENGLISH);
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.e("TTS", "Language not supported");
+                    } else {
+                    }
+                } else {
+                    Log.e("TTS", "Initialization failed");
+                }
+            }
+        });
     }
 
 
+    public void addVoid(String a) {
+
+
+        mTTS.setSpeechRate(1);
+        mTTS.speak(a, TextToSpeech.QUEUE_FLUSH, null);
+    }
     private void normal_or_favourite_or_history()
     {
         Intent intent = getIntent();
@@ -147,11 +173,31 @@ public class findword extends AppCompatActivity {
         lv_words.setAdapter(wordsAdapter);
     }
 
+    private String readFromInternal(){
+        try {
+            File sdcard = Environment.getExternalStorageDirectory();
+            File f = new File(sdcard,"auto.txt");
+            BufferedReader br = new BufferedReader(new FileReader(f));
+            String line;
+            StringBuilder content = new StringBuilder();
+            while ((line = br.readLine()) != null) {
+                content.append(line);
+            }
+            return content.toString();
+        }catch (Exception ex){
+            Log.e("lỗi ",ex.getMessage() );
+        }
+        return "";
+    }
     public void viewWord(){
         lv_words.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 words w=wordsArrayList.get(position);
+                if(readFromInternal().trim().equals("1"))
+                {
+                    addVoid(w.getName());
+                }
                 database.QueryData("UPDATE Wordss SET history=1 WHERE ID="+w.getID()+"");
                 Intent intent=new Intent(findword.this, viewWord.class);
                 Bundle bundle =new Bundle();
@@ -167,6 +213,11 @@ public class findword extends AppCompatActivity {
                 findword.this.startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     @Override
@@ -213,6 +264,7 @@ public class findword extends AppCompatActivity {
     //tạo databasse
     private void PrepareDB() {
 
+        database.QueryData("DROP TABLE wordss");
         database.QueryData("CREATE TABLE IF NOT EXISTS Wordss(ID Integer PRIMARY KEY AUTOINCREMENT, WordName VARCHAR(50),WordSpell VARCHAR(50)" +
                 ",WordType VARCHAR(50),WordMean VARCHAR(100),WordSynonym VARCHAR(100),WordExample VARCHAR(200),favourite INT,history INT)");
         database.QueryData("INSERT INTO Wordss VALUES(null,'Hello','[helou]','Động từ','Xin chào','Hi','Hello Khánh',0,0)");

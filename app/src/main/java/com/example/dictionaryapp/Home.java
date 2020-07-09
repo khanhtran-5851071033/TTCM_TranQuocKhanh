@@ -85,6 +85,12 @@ public class Home extends AppCompatActivity {
     public void toSetting(View view) {
         Intent intent=new Intent(Home.this, Setting.class);
         Home.this.startActivity(intent);
-        CustomIntent.customType(this,"Right-to-left");
+        CustomIntent.customType(this,"left-to-right");
+    }
+
+    public void toTheme(View view) {
+        Intent intent=new Intent(Home.this, Theme.class);
+        Home.this.startActivity(intent);
+        CustomIntent.customType(this,"left-to-right");
     }
 }

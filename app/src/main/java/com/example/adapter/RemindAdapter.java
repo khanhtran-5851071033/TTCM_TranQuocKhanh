@@ -3,6 +3,7 @@ package com.example.adapter;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,24 +77,33 @@ public class RemindAdapter extends BaseAdapter {
         holder.txt_Name.setText(w.getName());
         holder.txt_mean.setText(w.getMean());
         holder.txt_spell.setText(w.getSpell());
+        final SharedPreferences sharedPreferences = remindWord.getPreferences(Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove(w.getID()+"");
+        editor.apply();
+        boolean check = sharedPreferences.getBoolean(w.getID()+"",false);
+        if(check)
+            holder.checkBox_time.setChecked(true);
+        else
+            holder.checkBox_time.setChecked(false);
         holder.checkBox_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                     if(holder.checkBox_time.isChecked())
                     {
-                        SharedPreferences sharedPreferences = remindWord.getPreferences(Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
                         ds_set.add(w.getID()+"");
                         editor.putStringSet("set",ds_set);
+                        editor.putBoolean(w.getID()+"",true);
                         editor.apply();
+                        Log.e("check","true" );
                         remindWord.Toast_remind();
                     }
                     else {
-                        SharedPreferences sharedPreferences = remindWord.getPreferences(Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.remove("set");
                         editor.apply();
                         ds_set.remove(w.getID()+"");
+                        editor.remove(w.getID()+"");
+                        Log.e("check","false" );
                         editor.putStringSet("set",ds_set);
                         editor.apply();
                         remindWord.Toast_unremind();

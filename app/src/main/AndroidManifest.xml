@@ -4,8 +4,11 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
+        android:requestLegacyExternalStorage="true"
         android:name="com.example.notification.App"
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -13,7 +16,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Setting"></activity>
+        <activity android:name=".Theme"></activity>
+        <activity android:name=".Setting" />
         <activity android:name=".RemindWord" />
         <activity android:name=".viewTest" />
         <activity android:name=".test" />

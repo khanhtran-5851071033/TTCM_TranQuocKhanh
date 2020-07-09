@@ -147,6 +147,7 @@
             android:layout_marginLeft="20dp"
             android:background="@drawable/custom_card"
             android:gravity="center"
+            android:onClick="toTheme"
             android:orientation="vertical">
 
             <ImageView
