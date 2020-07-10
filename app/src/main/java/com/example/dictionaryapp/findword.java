@@ -64,7 +64,6 @@ public class findword extends AppCompatActivity {
         setContentView(R.layout.activity_findword);
         getSupportActionBar().hide();
         addView();
-       // PrepareDB();
         normal_or_favourite_or_history();
         viewWord();
         addEvent();
@@ -262,26 +261,4 @@ public class findword extends AppCompatActivity {
     }
 
     //tạo databasse
-    private void PrepareDB() {
-
-        database.QueryData("DROP TABLE wordss");
-        database.QueryData("CREATE TABLE IF NOT EXISTS Wordss(ID Integer PRIMARY KEY AUTOINCREMENT, WordName VARCHAR(50),WordSpell VARCHAR(50)" +
-                ",WordType VARCHAR(50),WordMean VARCHAR(100),WordSynonym VARCHAR(100),WordExample VARCHAR(200),favourite INT,history INT)");
-        database.QueryData("INSERT INTO Wordss VALUES(null,'Hello','[helou]','Động từ','Xin chào','Hi','Hello Khánh',0,0)");
-        database.QueryData("INSERT INTO Wordss VALUES(null,'Design','/dizain/','Danh từ','Bản thiết kế, kế hoạch','Plan, scheme','The design of machine',0,0)");
-        database.QueryData("INSERT INTO Wordss VALUES(null,'Information',' /ˌɪn.fəˈmeɪ.ʃən/','Danh từ','Thông tin','Info,Data',' I would like some information about your flights to the USA',0,0)");
-        database.QueryData("INSERT INTO Wordss VALUES(null,'Technology','/tekˈnɒl.ə.dʒi/','Danh từ','Công nghệ, khoa học','knowledge, machinery','The technology of computers',0,0)");
-        database.QueryData("INSERT INTO Wordss VALUES(null,'Condition','/kənˈdiʃn/','Danh từ','Điều kiện','State,form,order,..','A man of condition',0,0)");
-        database.QueryData("INSERT INTO Wordss VALUES(null,'Positive','/ˈpɔzətiv/','Tính từ','Xác thực, rõ ràng','Sure, certain','A positive proof',0,0)");
-        database.QueryData("INSERT INTO Wordss VALUES(null,'Negative','/ˈnegətiv/','Tính từ','Phủ định, phủ nhận, ','unenthusiastic, pessimistic','To give a negative answers',0,0)");
-        database.QueryData("INSERT INTO Wordss VALUES(null,'Technical','/ˈteknikəl/','Tính từ','Kỹ thuật',' technological, technical foul','technical school, technical terms',0,0)");
-        database.QueryData("INSERT INTO Wordss VALUES(null,'Computer','/kəmˈpju:tə/','Danh từ','Máy tính',' computing device','electronic computer',0,0)");
-        database.QueryData("INSERT INTO Wordss VALUES(null,'Reservation','/rezəˈveiʃn/','Danh từ','Sự hạn chế, điều kiện hạn chế','mental reservation,  arriere pensee','mental reservation',0,0)");
-        database.QueryData("INSERT INTO Wordss VALUES(null,'Book','/buk/','Danh từ','Sách','Bible','old book, to writer a book',0,0)");
-        database.QueryData("INSERT INTO Wordss VALUES(null,'Install','/inˈstɔ:l/','Ngoại động từ','Cài đặt','set up, put in','installing sofwares',0,0)");
-        database.QueryData("INSERT INTO Wordss VALUES(null,'Instruction','/insˈtrʌkʃn/','Danh từ','kiến thức truyền cho, tài liệu cung cấp cho','education, statement','course of instruction',0,0)");
-        database.QueryData("INSERT INTO Wordss VALUES(null,'Network','/ˈnetwə:k/','Danh từ','mạng lưới, hệ thống','electronic network','a network of railways',0,0)");
-        database.QueryData("INSERT INTO Wordss VALUES(null,'Database','/ˈdeitəbeis/','Danh từ','Cơ sở dữ liệu','database service,','database manager, database processor,',0,0)");
-        database.QueryData("INSERT INTO Wordss VALUES(null,'Developer','/diˈveləpə[r]/','Danh từ','Nhà phát triển','Creator, maker','Sofware deverloper',0,0)");
-    }
 }

@@ -27,7 +27,7 @@ public class login extends AppCompatActivity {
     CheckBox checkBox;
     TextView txt_toSignUp,lbl_signIn;
     Animation animation_top,animation_bottom,line_animation;
-    Database database= database = new Database(this, "Dictionary_db.sqlite", null, 1);;
+    Database database = new Database(this, "Dictionary_db.sqlite", null, 1);;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

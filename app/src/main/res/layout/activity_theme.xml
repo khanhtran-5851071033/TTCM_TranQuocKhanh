@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,223 +11,267 @@
     tools:context=".Theme">
 
     <LinearLayout
-        android:id="@+id/btn_technology"
         android:layout_width="match_parent"
-        android:layout_height="155dp"
-        android:background="@drawable/custom_line_setting"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:gravity="center"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="Technology"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:textColor="@color/design_default_color_surface" />
-
+        android:id="@+id/transitions_container"
+        android:orientation="vertical">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/btn_technology"
+            android:layout_width="360dp"
+            android:layout_height="155dp"
+            android:background="@drawable/custom_line_setting"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:onClick="openTech"
+            android:orientation="vertical"
+            android:transitionName="trans"
+            android:padding="10dp">
 
-            <ImageView
-                android:id="@+id/imageView12"
-                android:layout_width="115dp"
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/tech" />
+                android:layout_marginBottom="10dp"
+                android:text="Technology"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/design_default_color_surface" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/imageView12"
+                    android:layout_width="115dp"
                     android:layout_height="wrap_content"
-                    android:text="Luyện nghe"
-                    android:textColor="@color/design_default_color_surface" />
+                    app:srcCompat="@drawable/tech" />
 
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:text="Level 2"
-                    android:textColor="@color/design_default_color_surface" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Luyện nghe"
+                        android:textColor="@color/design_default_color_surface" />
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Level 2"
+                        android:textColor="@color/design_default_color_surface" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/n1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/next" />
 
             </LinearLayout>
+
         </LinearLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/btn_fashion"
-        android:layout_width="match_parent"
-        android:layout_height="155dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/custom_btn_login"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <TextView
-            android:id="@+id/textView17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="Fashion"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:textColor="@color/design_default_color_surface" />
-
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/btn_fashion"
+            android:layout_width="360dp"
+            android:layout_height="155dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/custom_btn_login"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:transitionName="trans"
+            android:onClick="openFashion"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-            <ImageView
-                android:id="@+id/imageView13"
-                android:layout_width="115dp"
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/fashion" />
+                android:layout_marginBottom="10dp"
+                android:text="Fashion"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/design_default_color_surface" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textView18"
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:layout_width="115dp"
                     android:layout_height="wrap_content"
-                    android:text="Luyện nói"
-                    android:textColor="@color/design_default_color_surface" />
+                    app:srcCompat="@drawable/fashion" />
 
-                <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:text="Level 3"
-                    android:textColor="@color/design_default_color_surface" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Luyện nói"
+                        android:textColor="@color/design_default_color_surface" />
+
+                    <TextView
+                        android:id="@+id/textView21"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Level 3"
+                        android:textColor="@color/design_default_color_surface" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/n2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/n2" />
 
             </LinearLayout>
+
         </LinearLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/btn_sport"
-        android:layout_width="match_parent"
-        android:layout_height="155dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/custom_row_theme"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <TextView
-            android:id="@+id/textView20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="Sport"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:textColor="@color/design_default_color_surface" />
-
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/btn_sport"
+            android:layout_width="360dp"
+            android:layout_height="155dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/custom_row_theme"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:transitionName="trans"
+            android:onClick="onpendSport"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-            <ImageView
-                android:id="@+id/imageView14"
-                android:layout_width="115dp"
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/sp" />
+                android:layout_marginBottom="10dp"
+                android:text="Sport"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/design_default_color_surface" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textView22"
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/imageView14"
+                    android:layout_width="115dp"
                     android:layout_height="wrap_content"
-                    android:text="Sport"
-                    android:textColor="@color/design_default_color_surface" />
+                    app:srcCompat="@drawable/sp" />
 
-                <TextView
-                    android:id="@+id/textView19"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:text="Level 2"
-                    android:textColor="@color/design_default_color_surface" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sport"
+                        android:textColor="@color/design_default_color_surface" />
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Level 2"
+                        android:textColor="@color/design_default_color_surface" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/n3"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/n3" />
+
             </LinearLayout>
+
         </LinearLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/btn_music"
-        android:layout_width="match_parent"
-        android:layout_height="155dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/custom_row_theme2"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-        <TextView
-            android:id="@+id/textView23"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="Music"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:textColor="@color/design_default_color_surface" />
-
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/btn_music"
+            android:layout_width="360dp"
+            android:layout_height="155dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/custom_row_theme2"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:onClick="openMusic"
+            android:transitionName="trans"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-            <ImageView
-                android:id="@+id/imageView15"
-                android:layout_width="115dp"
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/mussic" />
+                android:layout_marginBottom="10dp"
+                android:text="Music"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/design_default_color_surface" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textView25"
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/imageView15"
+                    android:layout_width="115dp"
                     android:layout_height="wrap_content"
-                    android:text="Music"
-                    android:textColor="@color/design_default_color_surface" />
+                    app:srcCompat="@drawable/mussic" />
 
-                <TextView
-                    android:id="@+id/textView24"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:text="Level 2"
-                    android:textColor="@color/design_default_color_surface" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Music"
+                        android:textColor="@color/design_default_color_surface" />
+
+                    <TextView
+                        android:id="@+id/textView24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Level 2"
+                        android:textColor="@color/design_default_color_surface" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/n4"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:srcCompat="@drawable/n1" />
             </LinearLayout>
-        </LinearLayout>
 
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>
