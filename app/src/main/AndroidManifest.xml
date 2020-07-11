@@ -18,18 +18,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".viewTechnology"></activity>
-        <activity android:name=".Theme" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".Setting" />
         <activity android:name=".RemindWord" />
         <activity android:name=".viewTest" />
         <activity android:name=".test" />
         <activity android:name=".viewWord" />
         <activity android:name=".findword" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Home" />
         <activity android:name=".signup" />
         <activity android:name=".login" />
         <activity
-            android:name=".Home"
+            android:name=".Theme"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>

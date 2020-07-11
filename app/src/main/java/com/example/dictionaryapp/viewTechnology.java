@@ -1,11 +1,13 @@
 package com.example.dictionaryapp;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.transition.Fade;
 import android.transition.TransitionManager;
@@ -17,15 +19,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 
 public class viewTechnology extends AppCompatActivity {
 
+    private static final int REQUEST_CODE_SPEECH_INPUT = 1;
     LinearLayout linearLayout,line_menu;
-    ImageView img_theme,show_theme,img_speak;
-    TextView txt_them,txt_content;
+    ImageView img_theme,show_theme,img_speak,img_nexxt,img_previous,img_Delete_text,img_void;
+    TextView txt_them,txt_content,txt_spech_totext,txt_page,txt_total_pages,txt_speed;
     SeekBar mSeekBarSpeed;
     private int theme=0;
     private TextToSpeech mTTS;
@@ -58,19 +63,32 @@ public class viewTechnology extends AppCompatActivity {
         show_theme=findViewById(R.id.n_show_theme);
         txt_content=findViewById(R.id.txt_content);
         img_speak=findViewById(R.id.img_speak);
+        img_nexxt=findViewById(R.id.img_nexxt);
+        img_previous=findViewById(R.id.img_previous);
+        img_Delete_text=findViewById(R.id.img_delete_Text);
+        txt_spech_totext=findViewById(R.id.txt_speech_to_text);
+        txt_page=findViewById(R.id.txt_page);
+        txt_total_pages=findViewById(R.id.txt_total_pages);
+        img_void=findViewById(R.id.img_void);
+        txt_speed=findViewById(R.id.txt_speed);
 
         Intent intent = getIntent();
         Bundle bundle=intent.getBundleExtra("my");
         if (bundle != null) {
             theme=bundle.getInt("theme");
         }
-        if(theme==1) {linearLayout.setBackgroundResource(R.drawable.custom_line_setting);txt_them.setText("Technology");img_theme.setImageResource(R.drawable.tech);show_theme.setImageResource(R.drawable.next);}
-        else if(theme==2){linearLayout.setBackgroundResource(R.drawable.custom_btn_login);txt_them.setText("Fashion");img_theme.setImageResource(R.drawable.fashion);show_theme.setImageResource(R.drawable.n2);}
-        else if(theme==3){linearLayout.setBackgroundResource(R.drawable.custom_row_theme);txt_them.setText("Sports");img_theme.setImageResource(R.drawable.sp);show_theme.setImageResource(R.drawable.n3);}
-        else if (theme==4){linearLayout.setBackgroundResource(R.drawable.custom_row_theme2);txt_them.setText("Music");img_theme.setImageResource(R.drawable.mussic);show_theme.setImageResource(R.drawable.n1);}
+        if(theme==1) {linearLayout.setBackgroundResource(R.drawable.custom_line_setting);txt_them.setText("Technology");img_theme.setImageResource(R.drawable.tech);
+        show_theme.setImageResource(R.drawable.next);img_previous.setImageResource(R.drawable.previous1);img_nexxt.setImageResource(R.drawable.next);}
+        else if(theme==2){linearLayout.setBackgroundResource(R.drawable.custom_btn_login);txt_them.setText("Fashion");img_theme.setImageResource(R.drawable.fashion);
+        show_theme.setImageResource(R.drawable.n2);img_previous.setImageResource(R.drawable.previous2);img_nexxt.setImageResource(R.drawable.n2);}
+        else if(theme==3){linearLayout.setBackgroundResource(R.drawable.custom_row_theme);txt_them.setText("Sports");img_theme.setImageResource(R.drawable.sp)
+        ;show_theme.setImageResource(R.drawable.n3);img_previous.setImageResource(R.drawable.previous3);img_nexxt.setImageResource(R.drawable.n3);}
+        else if (theme==4){linearLayout.setBackgroundResource(R.drawable.custom_row_theme2);txt_them.setText("Music");img_theme.setImageResource(R.drawable.mussic);
+        show_theme.setImageResource(R.drawable.n1);img_previous.setImageResource(R.drawable.previous4);img_nexxt.setImageResource(R.drawable.n1);}
     }
 
     boolean visible=false;
+    private int i=0;
     private void addEvent() {
         show_theme.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +114,75 @@ public class viewTechnology extends AppCompatActivity {
                 texttoSpeak();
             }
         });
+        img_Delete_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!txt_spech_totext.getText().equals("Speaking follow transcript")){txt_spech_totext.setText("Speaking follow transcript");}
+            }
+        });
+        img_nexxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(i<5)
+                {
+                    i++;txt_page.setText((i+1)+"");txt_spech_totext.setText((i+1)+"");
+                }
+            }
+        });
+        img_previous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(i>0){i--;txt_page.setText((i+1)+"");txt_spech_totext.setText((i+1)+"");}
+            }
+        });
+        img_void.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                speak();
+            }
+        });
+        mSeekBarSpeed.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                txt_speed.setText(progress+"%");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(resultCode==RESULT_OK && requestCode==REQUEST_CODE_SPEECH_INPUT)
+        {
+            ArrayList<String> resutl=data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            if(txt_spech_totext.getText().equals("Speaking follow transcript"))
+            txt_spech_totext.setText(resutl.get(0));
+            else  txt_spech_totext.setText(txt_spech_totext.getText()+resutl.get(0));
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void speak(){
+        Intent intent=new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,Locale.ENGLISH);
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Hi speaking something");
+        try {
+            startActivityForResult(intent,REQUEST_CODE_SPEECH_INPUT);
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(this,""+e.getMessage(),Toast.LENGTH_LONG).show();
+        }
     }
     private void texttoSpeak()
     {
