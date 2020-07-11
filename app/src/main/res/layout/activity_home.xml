@@ -244,6 +244,7 @@
                 android:layout_marginRight="20dp"
                 android:background="@drawable/custom_card"
                 android:gravity="center"
+                android:onClick="toTranslate"
                 android:orientation="vertical">
 
                 <ImageView

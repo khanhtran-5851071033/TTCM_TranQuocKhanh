@@ -128,4 +128,10 @@ public class Home extends AppCompatActivity {
         Home.this.startActivity(intent);
         CustomIntent.customType(this,"left-to-right");
     }
+
+    public void toTranslate(View view) {
+        Intent intent=new Intent(Home.this, Translate.class);
+        Home.this.startActivity(intent);
+        CustomIntent.customType(this,"up-to-bottom");
+    }
 }

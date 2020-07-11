@@ -68,8 +68,8 @@ public class test extends AppCompatActivity {
         intent.putExtra(EXTRA_CATEGORY_ID, categoryID);
         intent.putExtra(EXTRA_CATEGORY_NAME, categoryName);
         intent.putExtra(EXTRA_DIFFICULTY, difficulty);
-        CustomIntent.customType(this,"bottom-to-up");
         startActivityForResult(intent, REQUEST_CODE_QUIZ);
+        CustomIntent.customType(this,"left-to-right");
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
