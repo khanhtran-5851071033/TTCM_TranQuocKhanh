@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
@@ -21,19 +24,27 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.model.Theme;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
+
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.StringTokenizer;
 
 
 public class viewTechnology extends AppCompatActivity {
 
+
+    ArrayList<Theme> themeArrayList;
     private static final int REQUEST_CODE_SPEECH_INPUT = 1;
     LinearLayout linearLayout,line_menu;
-    ImageView img_theme,show_theme,img_speak,img_nexxt,img_previous,img_Delete_text,img_void;
+    ImageView img_theme,show_theme,img_speak,img_nexxt,img_previous,img_Delete_text,img_void,img_stran,btn_edit,btn_add;
     TextView txt_them,txt_content,txt_spech_totext,txt_page,txt_total_pages,txt_speed;
     SeekBar mSeekBarSpeed;
+    Database database = new Database(this, "Dictionary_db.sqlite", null, 1);
     private int theme=0;
     private TextToSpeech mTTS;
+    private int id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +52,6 @@ public class viewTechnology extends AppCompatActivity {
         getSupportActionBar().hide();
         addView();
         addEvent();
-
     }
 
     @Override
@@ -55,6 +65,7 @@ public class viewTechnology extends AppCompatActivity {
     }
 
     private void addView() {
+        themeArrayList=new ArrayList<>();
         linearLayout=findViewById(R.id.linear_theme);
         mSeekBarSpeed=findViewById(R.id.mSeekBarSpeed);
         line_menu=findViewById(R.id.lineear_menu);
@@ -71,6 +82,9 @@ public class viewTechnology extends AppCompatActivity {
         txt_total_pages=findViewById(R.id.txt_total_pages);
         img_void=findViewById(R.id.img_void);
         txt_speed=findViewById(R.id.txt_speed);
+        img_stran=findViewById(R.id.img_strans);
+        btn_add=findViewById(R.id.btn_add);
+        btn_edit=findViewById(R.id.btn_edit);
 
         Intent intent = getIntent();
         Bundle bundle=intent.getBundleExtra("my");
@@ -78,13 +92,13 @@ public class viewTechnology extends AppCompatActivity {
             theme=bundle.getInt("theme");
         }
         if(theme==1) {linearLayout.setBackgroundResource(R.drawable.custom_line_setting);txt_them.setText("Technology");img_theme.setImageResource(R.drawable.tech);
-        show_theme.setImageResource(R.drawable.next);img_previous.setImageResource(R.drawable.previous1);img_nexxt.setImageResource(R.drawable.next);}
+        show_theme.setImageResource(R.drawable.next);img_previous.setImageResource(R.drawable.previous1);img_nexxt.setImageResource(R.drawable.next);GetData("SELECT * FROM Theme WHERE ThemeName='"+txt_them.getText().toString()+"'");}
         else if(theme==2){linearLayout.setBackgroundResource(R.drawable.custom_btn_login);txt_them.setText("Fashion");img_theme.setImageResource(R.drawable.fashion);
-        show_theme.setImageResource(R.drawable.n2);img_previous.setImageResource(R.drawable.previous2);img_nexxt.setImageResource(R.drawable.n2);}
+        show_theme.setImageResource(R.drawable.n2);img_previous.setImageResource(R.drawable.previous2);img_nexxt.setImageResource(R.drawable.n2);GetData("SELECT * FROM Theme WHERE ThemeName='Fashion'");}
         else if(theme==3){linearLayout.setBackgroundResource(R.drawable.custom_row_theme);txt_them.setText("Sports");img_theme.setImageResource(R.drawable.sp)
-        ;show_theme.setImageResource(R.drawable.n3);img_previous.setImageResource(R.drawable.previous3);img_nexxt.setImageResource(R.drawable.n3);}
+        ;show_theme.setImageResource(R.drawable.n3);img_previous.setImageResource(R.drawable.previous3);img_nexxt.setImageResource(R.drawable.n3);GetData("SELECT * FROM Theme WHERE ThemeName='Sports'");}
         else if (theme==4){linearLayout.setBackgroundResource(R.drawable.custom_row_theme2);txt_them.setText("Music");img_theme.setImageResource(R.drawable.mussic);
-        show_theme.setImageResource(R.drawable.n1);img_previous.setImageResource(R.drawable.previous4);img_nexxt.setImageResource(R.drawable.n1);}
+        show_theme.setImageResource(R.drawable.n1);img_previous.setImageResource(R.drawable.previous4);img_nexxt.setImageResource(R.drawable.n1);GetData("SELECT * FROM Theme WHERE ThemeName='Music'");}
     }
 
     boolean visible=false;
@@ -120,21 +134,16 @@ public class viewTechnology extends AppCompatActivity {
                 if(!txt_spech_totext.getText().equals("Speaking follow transcript")){txt_spech_totext.setText("Speaking follow transcript");}
             }
         });
+        txt_content.setText(themeArrayList.get(i).getContent());
+        txt_total_pages.setText("/"+String.valueOf(themeArrayList.size()));
+        id=themeArrayList.get(i).getID();
         img_nexxt.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if(i<5)
-                {
-                    i++;txt_page.setText((i+1)+"");txt_spech_totext.setText((i+1)+"");
-                }
-            }
+            public void onClick(View v) { if(i<themeArrayList.size()-1) {id=themeArrayList.get(i+1).getID(); txt_content.setText(themeArrayList.get(i+1).getContent());i++;txt_page.setText((i+1)+""); } }
         });
         img_previous.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if(i>0){i--;txt_page.setText((i+1)+"");txt_spech_totext.setText((i+1)+"");}
-            }
-        });
+            public void onClick(View v) { if(i>0){i--;txt_page.setText((i+1)+""); txt_content.setText(themeArrayList.get(i).getContent());id=themeArrayList.get(i+1).getID();} }});
         img_void.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,6 +166,62 @@ public class viewTechnology extends AppCompatActivity {
 
             }
         });
+        img_stran.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { String tam=txt_content.getText().toString();String tam1=txt_spech_totext.getText().toString();txt_spech_totext.setText(tam);txt_content.setText(tam1); }});
+        btn_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String content = txt_content.getText().toString();
+                if(content.matches("")){ StyleableToast.makeText(viewTechnology.this,"Nội dung trống !",R.style.exampleToast).show();}
+                else {
+                    final AlertDialog.Builder alertDialog=new AlertDialog.Builder(viewTechnology.this);
+                    alertDialog.setMessage("Bạn có muốn thêm nội dụng này : "+txt_content.getText().toString()+" ?");
+                    alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            database.QueryData("INSERT INTO Theme VALUES(null,'"+txt_them.getText().toString()+"','"+txt_content.getText().toString()+"')");
+                            StyleableToast.makeText(viewTechnology.this,"Thêm nội dụng thành công !",R.style.SuccessToast).show();
+                            GetData("SELECT * FROM Theme WHERE ThemeName='"+txt_them.getText().toString()+"'");
+                            txt_total_pages.setText("/"+themeArrayList.size());
+                        }
+                    });
+                    alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    alertDialog.show();
+                }
+            }
+        });
+        btn_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String content = txt_content.getText().toString();
+                if(content.matches("")){ StyleableToast.makeText(viewTechnology.this,"Nội dung trống !",R.style.exampleToast).show();}
+                else {
+                    final AlertDialog.Builder alertDialog=new AlertDialog.Builder(viewTechnology.this);
+                    alertDialog.setMessage("Bạn có sữa thành nội dụng này : "+txt_content.getText().toString()+" ?");
+                    alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            database.QueryData("UPDATE Theme SET ThemeName='"+txt_them.getText().toString()+"',Content='"+txt_content.getText().toString()+"' WHERE ID="+id+"");
+                            StyleableToast.makeText(viewTechnology.this,"Sửa nội dụng thành công !",R.style.SuccessToast).show();
+                            GetData("SELECT * FROM Theme WHERE ThemeName='"+txt_them.getText().toString()+"'");
+                        }
+                    });
+                    alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    alertDialog.show();
+                }
+            }
+        });
     }
 
     @Override
@@ -164,9 +229,9 @@ public class viewTechnology extends AppCompatActivity {
         if(resultCode==RESULT_OK && requestCode==REQUEST_CODE_SPEECH_INPUT)
         {
             ArrayList<String> resutl=data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            if(txt_spech_totext.getText().equals("Speaking follow transcript"))
-            txt_spech_totext.setText(resutl.get(0));
-            else  txt_spech_totext.setText(txt_spech_totext.getText()+resutl.get(0));
+            if(txt_spech_totext.getText().equals("Speaking follow transcript")){
+            txt_spech_totext.setText(resutl.get(0)); }
+            else {String tam=txt_spech_totext.getText().toString();txt_spech_totext.setText(tam+" "+resutl.get(0));}
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -204,6 +269,17 @@ public class viewTechnology extends AppCompatActivity {
                 mTTS.speak(txt_content.getText().toString(), TextToSpeech.QUEUE_FLUSH, null);
             }
         });
+    }
+
+    private void GetData(String qr) {
+        Cursor c= database.GetData(qr);
+        themeArrayList.clear();
+        while (c.moveToNext()){
+            int ID=c.getInt(0);
+            String themeName =c.getString(1);
+            String themeContent=c.getString(2);
+            themeArrayList.add(new Theme(ID,themeName,themeContent));
+        }
     }
 
 }

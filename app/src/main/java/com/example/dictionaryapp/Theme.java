@@ -8,6 +8,7 @@ import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.transition.Fade;
 import android.transition.Slide;
@@ -29,6 +30,7 @@ public class Theme extends AppCompatActivity {
     LinearLayout tech,mussic,sport,fashion;
     Animation animation,fade_in;
     ImageView n1,n2,n3,n4;
+    Database database = new Database(this, "Dictionary_db.sqlite", null, 1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class Theme extends AppCompatActivity {
         addView();
         addAnimation();
         addEvent();
+        addData();
     }
 
 
@@ -58,6 +61,23 @@ public class Theme extends AppCompatActivity {
 
     }
 
+    private void addData(){
+        //database.QueryData("DROP TABLE Theme");
+        database.QueryData("CREATE TABLE IF NOT EXISTS Theme(ID Integer PRIMARY KEY AUTOINCREMENT, ThemeName VARCHAR(50),Content VARCHAR(255))");
+        Cursor cursor=database.GetData("SELECT * FROM Theme ");
+        int count=cursor.getCount();
+        if(count==0)
+        {
+            database.QueryData("INSERT INTO Theme VALUES(null,'Technology','Information technology (IT) is the use of computers to store, retrieve, transmit, and manipulate data or information.')");
+            database.QueryData("INSERT INTO Theme VALUES(null,'Technology','A designer is a person who plans the look or workings of something prior to it being made, by preparing drawings or plans.')");
+            database.QueryData("INSERT INTO Theme VALUES(null,'Technology','What do you think are the important things people need to learn when they start using computers?')");
+            database.QueryData("INSERT INTO Theme VALUES(null,'Music','Music is an art form, and cultural activity, whose medium is sound.')");
+            database.QueryData("INSERT INTO Theme VALUES(null,'Music','Making music is the process of putting sounds and tones in an order, often combining them to create a unified composition. P')");
+            database.QueryData("INSERT INTO Theme VALUES(null,'Fashion','Fashion is a popular aesthetic expression at a particular time, place and in a specific context, especially in clothing, footwear, lifestyle, accessories, makeup, hairstyle, and body proportions.')");
+            database.QueryData("INSERT INTO Theme VALUES(null,'Fashion','Designer clothing is expensive luxury clothing considered to be high quality and haute couture for the general public, made by, or carrying the label of, a well-known fashion designer.')");
+            database.QueryData("INSERT INTO Theme VALUES(null,'Sports','A sport is commonly defined as an athletic activity that involves a degree of competition, such as netball or basketball. ')");
+            database.QueryData("INSERT INTO Theme VALUES(null,'Sports','Football is a family of team sports that involve, to varying degrees, kicking a ball to score a goal. Unqualified, the word football normally means the form of football that is the most popular where the word is used. ')");
+        }}
 
     private void addView(){
         tech=findViewById(R.id.btn_technology);
