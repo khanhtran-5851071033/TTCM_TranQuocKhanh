@@ -44,7 +44,7 @@
         android:id="@+id/lv_words"
         style="@android:style/Widget.DeviceDefault.ExpandableListView"
         android:layout_width="match_parent"
-        android:layout_height="658dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="20dp"
         android:background="@android:color/background_light">
 

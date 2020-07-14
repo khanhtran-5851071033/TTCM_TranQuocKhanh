@@ -119,7 +119,7 @@
             android:id="@+id/line1"
             android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:layout_marginTop="190dp"
+            android:layout_marginTop="260dp"
             app:srcCompat="@drawable/back_ground_flash" />
     </LinearLayout>
 
