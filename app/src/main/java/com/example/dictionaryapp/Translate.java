@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.model.Language;
 import com.example.model.TranslateAPI;
+import com.muddzdev.styleabletoastlibrary.StyleableToast;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -86,47 +87,63 @@ public class Translate extends AppCompatActivity {
         btn_anh_viet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                linear_output.setVisibility(View.VISIBLE);
-                TranslateAPI translateAPI = new TranslateAPI(
-                        Language.AUTO_DETECT,
-                        Language.VIETNAMESE,
-                        txt_input.getText().toString());
-                translateAPI.setTranslateListener(new TranslateAPI.TranslateListener() {
-                    @Override
-                    public void onSuccess(String translatedText) {
-                        Log.d(TAG, "onSuccess: "+translatedText);
-                        txt_output.setText(translatedText);
-                    }
+                String input=txt_input.getText().toString();
+                if(input.matches(""))
+                {
+                    StyleableToast.makeText(Translate.this,"Enter your text !",R.style.exampleToast).show();
+                }
+                else {
+                    linear_output.setVisibility(View.VISIBLE);
+                    TranslateAPI translateAPI = new TranslateAPI(
+                            Language.AUTO_DETECT,
+                            Language.VIETNAMESE,
+                            txt_input.getText().toString());
+                    translateAPI.setTranslateListener(new TranslateAPI.TranslateListener() {
+                        @Override
+                        public void onSuccess(String translatedText) {
+                            Log.d(TAG, "onSuccess: "+translatedText);
+                            txt_output.setText(translatedText);
+                        }
 
-                    @Override
-                    public void onFailure(String ErrorText) {
-                        Log.d(TAG, "onFailure: "+ErrorText);
+                        @Override
+                        public void onFailure(String ErrorText) {
+                            Log.d(TAG, "onFailure: "+ErrorText);
 
-                    }
-                });
+                        }
+                    });
+                }
+
             }
         });
         btn_viet_anh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                linear_output.setVisibility(View.VISIBLE);
-                TranslateAPI translateAPI = new TranslateAPI(
-                        Language.AUTO_DETECT,
-                        Language.ENGLISH,
-                        txt_input.getText().toString());
-                translateAPI.setTranslateListener(new TranslateAPI.TranslateListener() {
-                    @Override
-                    public void onSuccess(String translatedText) {
-                        Log.d(TAG, "onSuccess: "+translatedText);
-                        txt_output.setText(translatedText);
-                    }
+                String input=txt_input.getText().toString();
+                if(input.matches(""))
+                {
+                    StyleableToast.makeText(Translate.this,"Enter your text !",R.style.exampleToast).show();
+                }
+                else {
+                    linear_output.setVisibility(View.VISIBLE);
+                    TranslateAPI translateAPI = new TranslateAPI(
+                            Language.AUTO_DETECT,
+                            Language.ENGLISH,
+                            txt_input.getText().toString());
+                    translateAPI.setTranslateListener(new TranslateAPI.TranslateListener() {
+                        @Override
+                        public void onSuccess(String translatedText) {
+                            Log.d(TAG, "onSuccess: "+translatedText);
+                            txt_output.setText(translatedText);
+                        }
 
-                    @Override
-                    public void onFailure(String ErrorText) {
-                        Log.d(TAG, "onFailure: "+ErrorText);
+                        @Override
+                        public void onFailure(String ErrorText) {
+                            Log.d(TAG, "onFailure: "+ErrorText);
 
-                    }
-                });
+                        }
+                    });
+                }
+
             }
         });
         seekBar_seed.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

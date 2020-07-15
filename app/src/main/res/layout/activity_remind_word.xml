@@ -69,7 +69,7 @@
         android:id="@+id/lv_words"
         style="@android:style/Widget.DeviceDefault.ExpandableListView"
         android:layout_width="match_parent"
-        android:layout_height="531dp"
+        android:layout_height="550dp"
         android:layout_marginTop="10dp"
         android:background="@android:color/background_light"></ListView>
 

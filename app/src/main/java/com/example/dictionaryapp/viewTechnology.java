@@ -135,7 +135,7 @@ public class viewTechnology extends AppCompatActivity {
             }
         });
         txt_content.setText(themeArrayList.get(i).getContent());
-        txt_total_pages.setText("/"+String.valueOf(themeArrayList.size()));
+        txt_total_pages.setText("/"+themeArrayList.size());
         id=themeArrayList.get(i).getID();
         img_nexxt.setOnClickListener(new View.OnClickListener() {
             @Override

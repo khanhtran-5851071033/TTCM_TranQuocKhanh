@@ -36,6 +36,8 @@ public class test extends AppCompatActivity {
     public static final String EXTRA_DIFFICULTY = "extraDifficulty";
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String KEY_HIGHSCORE = "keyHighscore";
+    Animation animation;
+    ImageView image_ani;
     private TextView textViewHighscore;
     private Spinner spinnerCategory;
     private Spinner spinnerDifficulty;
@@ -48,6 +50,9 @@ public class test extends AppCompatActivity {
         textViewHighscore = findViewById(R.id.text_view_highscore);
         spinnerCategory = findViewById(R.id.spinner_category);
         spinnerDifficulty = findViewById(R.id.spinner_difficulty);
+        image_ani=findViewById(R.id.img_ani);
+        animation=AnimationUtils.loadAnimation(this,R.anim.home_rigth_animation);
+        image_ani.setAnimation(animation);
         loadCategories();
         loadDifficultyLevels();
         loadHighscore();

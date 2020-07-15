@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -56,6 +57,7 @@ public class viewTest extends AppCompatActivity {
     private boolean answered;
     private long backPressedTime;
     Animation animation_rotate ;
+     MediaPlayer mediaPlayer,mediaPlayer1;
     private ImageView img_lock;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +75,8 @@ public class viewTest extends AppCompatActivity {
         rb2 = findViewById(R.id.radio_button2);
         rb3 = findViewById(R.id.radio_button3);
         img_lock=findViewById(R.id.img);
+        mediaPlayer=MediaPlayer.create(this,R.raw.sound);
+        mediaPlayer1=MediaPlayer.create(this,R.raw.sound_right);
         buttonConfirmNext = findViewById(R.id.button_confirm_next);
         textColorDefaultRb = rb1.getTextColors();
         textColorDefaultCd = textViewCountDown.getTextColors();
@@ -175,9 +179,11 @@ public class viewTest extends AppCompatActivity {
         RadioButton rbSelected = findViewById(rbGroup.getCheckedRadioButtonId());
         int answerNr = rbGroup.indexOfChild(rbSelected) + 1;
         if (answerNr == currentQuestion.getAnswerNr()) {
+            mediaPlayer1.start();
             score++;
             textViewScore.setText("Score: " + score);
         }
+        else {mediaPlayer.start();}
         showSolution();
     }
     private void showSolution() {
