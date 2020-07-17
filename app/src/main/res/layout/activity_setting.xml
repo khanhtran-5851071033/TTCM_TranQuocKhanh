@@ -77,11 +77,13 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/openQuestions"
                 android:layout_width="360dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/custom_line_setting"
                 android:gravity="center"
+                android:onClick="openQuestion"
                 android:orientation="horizontal">
 
                 <ImageView

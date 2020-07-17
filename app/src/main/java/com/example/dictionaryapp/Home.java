@@ -102,8 +102,6 @@ public class Home extends AppCompatActivity {
         }
 
     }
-
-
     public void findWord(View view) {
         Intent intent=new Intent(Home.this, findword.class);
         Home.this.startActivity(intent);

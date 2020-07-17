@@ -59,15 +59,16 @@
                         android:id="@+id/textView14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Luyện nghe"
+                        android:text="I don't design UI, I design dreams !"
                         android:textColor="@color/design_default_color_surface" />
 
                     <TextView
                         android:id="@+id/textView15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Level 2"
-                        android:textColor="@color/design_default_color_surface" />
+                        android:layout_marginLeft="50dp"
+                        android:text="Kaylins Tran"
+                        android:textColor="@color/design_default_color_secondary" />
 
                 </LinearLayout>
 
@@ -124,15 +125,16 @@
                         android:id="@+id/textView18"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Luyện nói"
+                        android:text="In order to be irreplaceabale, one must always be differnt."
                         android:textColor="@color/design_default_color_surface" />
 
                     <TextView
                         android:id="@+id/textView21"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Level 3"
-                        android:textColor="@color/design_default_color_surface" />
+                        android:layout_marginLeft="50dp"
+                        android:text="Coco channel"
+                        android:textColor="?android:attr/colorForeground" />
 
                 </LinearLayout>
 
@@ -189,15 +191,16 @@
                         android:id="@+id/textView22"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Sport"
+                        android:text="Football is not a game - it is lifestyle!"
                         android:textColor="@color/design_default_color_surface" />
 
                     <TextView
                         android:id="@+id/textView19"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Level 2"
-                        android:textColor="@color/design_default_color_surface" />
+                        android:layout_marginLeft="50dp"
+                        android:text="Kaylins Tran"
+                        android:textColor="@android:color/holo_orange_light" />
                 </LinearLayout>
 
                 <ImageView
@@ -253,15 +256,16 @@
                         android:id="@+id/textView25"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Music"
+                        android:text="Of all noises, I think music is the least disagreeable."
                         android:textColor="@color/design_default_color_surface" />
 
                     <TextView
                         android:id="@+id/textView24"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Level 2"
-                        android:textColor="@color/design_default_color_surface" />
+                        android:layout_marginLeft="50dp"
+                        android:text="Samuel Johnson"
+                        android:textColor="@color/design_default_color_secondary_variant" />
 
                 </LinearLayout>
 

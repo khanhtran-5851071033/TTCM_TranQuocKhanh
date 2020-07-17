@@ -26,6 +26,8 @@ import java.util.Set;
 
 import javax.security.auth.login.LoginException;
 
+import maes.tech.intentanim.CustomIntent;
+
 public class Setting extends AppCompatActivity {
 
     Switch auto;
@@ -101,5 +103,11 @@ public class Setting extends AppCompatActivity {
         Intent intent=new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("https://www.apple.com/"));
         startActivity(intent);
+    }
+
+    public void openQuestion(View view) {
+        Intent intent=new Intent(Setting.this, setting_questions.class);
+        Setting.this.startActivity(intent);
+        CustomIntent.customType(this,"left-to-right");
     }
 }
