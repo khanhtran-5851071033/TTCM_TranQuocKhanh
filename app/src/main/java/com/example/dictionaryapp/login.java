@@ -2,7 +2,9 @@ package com.example.dictionaryapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -28,11 +30,13 @@ public class login extends AppCompatActivity {
     TextView txt_toSignUp,lbl_signIn;
     Animation animation_top,animation_bottom,line_animation;
     Database database = new Database(this, "Dictionary_db.sqlite", null, 1);;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         getSupportActionBar().hide();
+        context=login.this;
         animation_top= AnimationUtils.loadAnimation(this,R.anim.top_animation);
         animation_bottom= AnimationUtils.loadAnimation(this,R.anim.bottom_animation);
         line_animation= AnimationUtils.loadAnimation(this,R.anim.line_animation);
@@ -61,7 +65,15 @@ public class login extends AppCompatActivity {
                     int count=cursor.getCount();
                     if(count>0)
                     {
-                        StyleableToast.makeText(login.this,"Login accessfull !",R.style.SuccessToast).show();
+                        if(checkBox.isChecked())
+                        {
+                            StyleableToast.makeText(login.this,"Login accessfull !",R.style.SuccessToast).show();
+                            SharedPreferences preferences=context.getSharedPreferences("login",MODE_PRIVATE);
+                            SharedPreferences.Editor editor=preferences.edit();
+                            editor.putString("tendangnhap",txt_user.getText().toString());
+                            editor.putString("matkhau",txt_pass.getText().toString());
+                            editor.apply();
+                        }
                         toHome();
                     }
                     else {
@@ -95,6 +107,13 @@ public class login extends AppCompatActivity {
         checkBox=findViewById(R.id.chk_remember);
         lbl_signIn=findViewById(R.id.lbl_signIn);
         line=findViewById(R.id.line1);
+        SharedPreferences preferences=context.getSharedPreferences("login",MODE_PRIVATE);
+        String ten=preferences.getString("tendangnhap","chualuu");
+        String matkhau=preferences.getString("matkhau","hh");
+        if(ten!="chualuu"){
+            txt_user.setText(ten);
+            txt_pass.setText(matkhau);
+        }
     }
 
 

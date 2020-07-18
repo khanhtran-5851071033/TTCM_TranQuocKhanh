@@ -106,10 +106,34 @@ public class QuizDbHelper extends SQLiteOpenHelper {
                 "combine", " add", "join", 2,
                 Question.DIFFICULTY_MEDIUM, Category.Grammar);
         insertQuestion(q6);
+        Question g3 = new Question("This ticket _____ one person to the show.",
+                " enters ", "admits", " permits ", 2,
+                Question.DIFFICULTY_MEDIUM, Category.Grammar);
+        insertQuestion(g3);
+        Question g4 = new Question(" If you ______ your money to mine, we shall have enough.",
+                "admits", "adopt", "undertake", 2,
+                Question.DIFFICULTY_MEDIUM, Category.Grammar);
+        insertQuestion(g4);
         Question q3 = new Question(" Experiments in the sonic imaging of moving objects … in both the United States and Europe well before the Second World War.",
                 "were conducting", "have been conducted", "had been conducted", 3,
                 Question.DIFFICULTY_HARD, Category.Grammar);
         insertQuestion(q3);
+        Question g1 = new Question("You are old enough to take _______ for what you have done.",
+                " responsible ", " responsibility", " responsibly", 2,
+                Question.DIFFICULTY_HARD, Category.Grammar);
+        insertQuestion(g1);
+        Question g2 = new Question("It is _______ to fail a job interview, but try again.",
+                "disappointing", "disappoint", "disappointedly", 1,
+                Question.DIFFICULTY_HARD, Category.Grammar);
+        insertQuestion(g2);
+        Question g7 = new Question("Science has made great _____ during the past 30 years.",
+                " advances ", "motions", " advantages ", 1,
+                Question.DIFFICULTY_HARD, Category.Grammar);
+        insertQuestion(g7);
+        Question g8 = new Question(" I had quite ______ on my way to work this morning.",
+                " a happening", "an experiment ", "an adventure ", 3,
+                Question.DIFFICULTY_HARD, Category.Grammar);
+        insertQuestion(g8);
 
 
         //Communication
@@ -139,6 +163,14 @@ public class QuizDbHelper extends SQLiteOpenHelper {
         insertQuestion(q4);
 
         //Vocabulary
+        Question v11 = new Question("Are you sure that boys are more _______ than girls?",
+                "act ", " active", "action", 2,
+                Question.DIFFICULTY_EASY, Category.Vocabulary);
+        insertQuestion(v11);
+        Question v12 = new Question("What is the meaning of this word : EVALUATE",
+                "Đánh giá", "Phàn nàn", "Khuyên nhủ", 1,
+                Question.DIFFICULTY_EASY, Category.Vocabulary);
+        insertQuestion(v12);
         Question v1 = new Question("What is the meaning of this word : STRENGTHEN",
                 "Béo phì", "Gầy,ốm", "Làm mạnh lên, củng cố", 3,
                 Question.DIFFICULTY_HARD, Category.Vocabulary);
