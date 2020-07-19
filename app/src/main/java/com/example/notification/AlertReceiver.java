@@ -33,8 +33,12 @@ public class AlertReceiver extends BroadcastReceiver {
    @Override
    public void onReceive(Context context, Intent intent) {
        NotificationHelper notificationHelper = new NotificationHelper(context);
-
        ArrayList<String>danhsach = intent.getStringArrayListExtra("ds");
+       for (String item :
+               danhsach) {
+           Log.e("tu",item );
+
+       }
       // Log.e("aa :",danhsach.get(0));
 
            // or activity.getApplicationContext()

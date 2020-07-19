@@ -79,6 +79,7 @@ public class RemindAdapter extends BaseAdapter {
         holder.txt_spell.setText(w.getSpell());
         final SharedPreferences sharedPreferences = remindWord.getPreferences(Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
         editor.remove(w.getID()+"");
         editor.apply();
         boolean check = sharedPreferences.getBoolean(w.getID()+"",false);
@@ -92,10 +93,13 @@ public class RemindAdapter extends BaseAdapter {
                     if(holder.checkBox_time.isChecked())
                     {
                         ds_set.add(w.getID()+"");
+                       // Log.e("lenght",ds_set.size()+"" );
+                        editor.remove("set");
+                        editor.apply();
                         editor.putStringSet("set",ds_set);
                         editor.putBoolean(w.getID()+"",true);
                         editor.apply();
-                        Log.e("check","true" );
+                        //Log.e("check",holder.txt_Name.getText().toString() );
                         remindWord.Toast_remind();
                     }
                     else {
@@ -103,7 +107,7 @@ public class RemindAdapter extends BaseAdapter {
                         editor.apply();
                         ds_set.remove(w.getID()+"");
                         editor.remove(w.getID()+"");
-                        Log.e("check","false" );
+                       // Log.e("check","false" );
                         editor.putStringSet("set",ds_set);
                         editor.apply();
                         remindWord.Toast_unremind();

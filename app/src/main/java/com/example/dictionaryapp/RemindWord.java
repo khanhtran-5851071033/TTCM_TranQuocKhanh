@@ -18,6 +18,7 @@ import android.os.Parcelable;
 import android.speech.RecognizerIntent;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -187,12 +188,17 @@ public class RemindWord extends AppCompatActivity implements TimePickerDialog.On
         Intent intent = new Intent(this, AlertReceiver.class);
         SharedPreferences preferences = getPreferences(MODE_PRIVATE);
         Set<String>ds = preferences.getStringSet("set",null);
+        Log.e("ds",ds.size()+"" );
         ArrayList<String> danhsach = new ArrayList<>();
         for (String i : ds) {
             int ma = Integer.parseInt(i);
             com.example.model.words w = getRemind(ma);
             String a = ma+"-"+w.getName()+"-"+w.getSpell()+"-"+w.getMean();
             danhsach.add(a);
+        }
+        for (String item :
+                danhsach) {
+            Log.e("item",item );
         }
         intent.putExtra("ds",danhsach);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);

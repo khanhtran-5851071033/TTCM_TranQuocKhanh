@@ -56,11 +56,7 @@ public class viewTechnology extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        if(mTTS!=null)
-        {
-            mTTS.stop();
-            mTTS.shutdown();
-        }
+
         super.onDestroy();
     }
 
@@ -131,7 +127,8 @@ public class viewTechnology extends AppCompatActivity {
         img_Delete_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!txt_spech_totext.getText().equals("Speaking follow transcript")){txt_spech_totext.setText("Speaking follow transcript");}
+                if(!txt_spech_totext.getText().equals("Speaking follow transcript")){txt_spech_totext.setText("Speaking follow transcript");
+                }
             }
         });
         txt_content.setText(themeArrayList.get(i).getContent());
@@ -147,6 +144,11 @@ public class viewTechnology extends AppCompatActivity {
         img_void.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(mTTS!=null)
+                {
+                    mTTS.stop();
+                    mTTS.shutdown();
+                }
                 speak();
             }
         });

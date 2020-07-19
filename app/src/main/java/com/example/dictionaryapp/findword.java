@@ -25,7 +25,9 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -56,6 +58,7 @@ public class findword extends AppCompatActivity {
     private int favourite=0;
     private int history=0;
     private TextToSpeech mTTS;
+    private static final ArrayList<String> NAME=new ArrayList<>();
 
 
     @Override
@@ -67,6 +70,10 @@ public class findword extends AppCompatActivity {
         normal_or_favourite_or_history();
         viewWord();
         addEvent();
+        autoComplete();
+        ArrayAdapter<String> stringArrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,NAME);
+        txt_find.setAdapter(stringArrayAdapter);
+
     }
 
     private void addEvent() {
@@ -233,6 +240,14 @@ public class findword extends AppCompatActivity {
         super.onResume();
     }
 
+    private void autoComplete(){
+        Cursor c= database.GetData("SELECT * FROM Wordss");
+        wordsArrayList.clear();
+        while (c.moveToNext()){
+            String WordName =c.getString(1);
+            NAME.add(WordName);
+        }
+    }
     private void GetData(String qr) {
         Cursor c= database.GetData(qr);
         wordsArrayList.clear();
