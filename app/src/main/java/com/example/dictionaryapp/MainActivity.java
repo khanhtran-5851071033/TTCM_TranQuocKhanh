@@ -64,6 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 CustomIntent.customType(MainActivity.this,"left-to-right");
                 MainActivity.this.finish();
             }
-        },4200);
+        },4000);
     }
 }
