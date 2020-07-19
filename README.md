@@ -3,7 +3,7 @@
 Họ tên: Trần Quốc Khánh
 Mã sinh viên: 5851071033
 Lớp: CNTT-k58
-## Đề tài: Từ điển English (Mobil App)
+## Đề tài: Từ điển English (Mobile App)
 ## Phần 1: Công nghệ sử dụng
 - API Translate (Dịch văn bản)
 - SQLite (Cơ sở dữ liệu)
@@ -19,6 +19,7 @@ Lớp: CNTT-k58
 8. Cài đặt (Tự phát âm, trợ giúp, đánh giá, thông tin,..)
 9. Đăng nhập
 10. Đăng ký tài khoản
+11. Xuất file APK
 ## Phần 3: Các chức năng chưa hoàn thành
 1. Nhắc từ vừng còn một số lỗi ẩn. (Cơ bản vẫn sử dụng được)
 ## Hướng dẫn sử dụng
